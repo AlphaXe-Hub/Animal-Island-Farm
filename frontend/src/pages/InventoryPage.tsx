@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { Button, Card, Collapse } from 'animal-island-ui'
 import { apiFetch } from '../api/client'
 import { useAuth } from '../auth/AuthContext'
+import { Emoji, EmojiLabel } from '../components/Emoji'
+import { INV_CAT_EMOJI, itemEmoji } from '../emojis'
 import type { UserJson } from '../types'
 
 function categoryKey(id: string): 'crop' | 'seed' | 'fertilizer' | 'decoration' | 'prop' | 'other' {
@@ -54,20 +56,29 @@ export function InventoryPage() {
       {[...grouped.entries()].map(([ck, rows]) => (
         <Collapse
           key={ck}
-          question={<strong>{t(`inv.cat.${ck}`)}</strong>}
+          question={
+            <strong>
+              {INV_CAT_EMOJI[ck] ?? '📦'} {t(`inv.cat.${ck}`)}
+            </strong>
+          }
           answer={
             <div className="inv-rows">
               {rows.map((r) => (
                 <Card key={r.itemId} color="app-pink" className="inv-card">
-                  <div>{itemName(r.itemId)}</div>
-                  <div>
-                    {t('common.qty')} {r.qty}
+                  <div className="inv-card-row">
+                    <Emoji size="xl">{itemEmoji(r.itemId)}</Emoji>
+                    <div className="inv-card-body">
+                      <div>{itemName(r.itemId)}</div>
+                      <div>
+                        {t('common.qty')} {r.qty}
+                      </div>
+                      {r.itemId.startsWith('crop_') ? (
+                        <Button size="small" loading={busy} onClick={() => sell(r.itemId)}>
+                          <EmojiLabel emoji="💰">{t('common.sellOne')}</EmojiLabel>
+                        </Button>
+                      ) : null}
+                    </div>
                   </div>
-                  {r.itemId.startsWith('crop_') ? (
-                    <Button size="small" loading={busy} onClick={() => sell(r.itemId)}>
-                      {t('common.sellOne')}
-                    </Button>
-                  ) : null}
                 </Card>
               ))}
             </div>
@@ -75,7 +86,14 @@ export function InventoryPage() {
           defaultExpanded
         />
       ))}
-      {grouped.size === 0 ? <p>{t('inv.empty')}</p> : null}
+      {grouped.size === 0 ? (
+        <>
+          <div className="empty-emoji" aria-hidden>
+            📭
+          </div>
+          <p>{t('inv.empty')}</p>
+        </>
+      ) : null}
     </div>
   )
 }

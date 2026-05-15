@@ -3,7 +3,9 @@ import { useTranslation } from 'react-i18next'
 import { Button, Modal } from 'animal-island-ui'
 import { apiFetch } from '../api/client'
 import { useAuth } from '../auth/AuthContext'
+import { Emoji, EmojiLabel } from '../components/Emoji'
 import { CROP_IDS } from '../constants'
+import { cropEmoji, plotCellEmoji, PLOT_STATE_EMOJI } from '../emojis'
 import { modalTitleTypewriter } from '../i18n/modalProps'
 import type { FarmPlotJson, UserJson } from '../types'
 
@@ -45,7 +47,7 @@ export function FarmPage() {
         return {
           cropId: c,
           label: t('farm.seedLabel', {
-            name: t(`crop.${c}`),
+            name: `${cropEmoji(c)} ${t(`crop.${c}`)}`,
             count: qty,
           }),
           qty,
@@ -76,7 +78,10 @@ export function FarmPage() {
 
   return (
     <div className="farm-page">
-      <p className="farm-hint">{t('farm.hint')}</p>
+      <p className="farm-hint">
+        <Emoji size="md">👆</Emoji>
+        {t('farm.hint')}
+      </p>
       {err ? <p className="form-error">{err}</p> : null}
       <div className="plot-grid">
         {user.farmPlots.map((p) => (
@@ -90,6 +95,9 @@ export function FarmPage() {
             }}
           >
             <span className="plot-idx">{p.index + 1}</span>
+            <span className="plot-cell-emoji" aria-hidden>
+              {plotCellEmoji(p.state, p.cropId)}
+            </span>
             {p.state === 'growing' || p.state === 'mature' ? (
               <span className="plot-crop">
                 {p.cropId ? t(`crop.${p.cropId}`, { defaultValue: p.cropId }) : ''}
@@ -115,12 +123,20 @@ export function FarmPage() {
       >
         {plot ? (
           <div className="plot-modal">
+            <div className="plot-modal-hero">
+              <Emoji size="hero">{plotCellEmoji(plot.state, plot.cropId)}</Emoji>
+            </div>
             <p>
+              {PLOT_STATE_EMOJI[plot.state]}{' '}
               {t('farm.stateLine', {
                 state: t(`plot.state.${plot.state}`, { defaultValue: plot.state }),
               })}
             </p>
-            {plot.state === 'locked' ? <p>{t('farm.lockedHelp')}</p> : null}
+            {plot.state === 'locked' ? (
+              <p>
+                <Emoji size="sm">🔒</Emoji> {t('farm.lockedHelp')}
+              </p>
+            ) : null}
             {plot.state === 'wasteland' ? (
               <Button
                 type="primary"
@@ -132,12 +148,12 @@ export function FarmPage() {
                   if (ok) setModalPlot(null)
                 }}
               >
-                {t('farm.till')}
+                <EmojiLabel emoji="⛏️">{t('farm.till')}</EmojiLabel>
               </Button>
             ) : null}
             {plot.state === 'tilled' && !plantPick ? (
               <Button type="primary" onClick={() => setPlantPick(true)} disabled={busy}>
-                {t('farm.plant')}
+                <EmojiLabel emoji="🌱">{t('farm.plant')}</EmojiLabel>
               </Button>
             ) : null}
             {plot.state === 'tilled' && plantPick ? (
@@ -146,7 +162,9 @@ export function FarmPage() {
                   {t('common.back')}
                 </Button>
                 {seedOptions.length === 0 ? (
-                  <p>{t('farm.noSeeds')}</p>
+                  <p>
+                    <Emoji size="sm">🛒</Emoji> {t('farm.noSeeds')}
+                  </p>
                 ) : (
                   seedOptions.map((s) => (
                     <Button
@@ -174,8 +192,12 @@ export function FarmPage() {
             ) : null}
             {plot.state === 'growing' ? (
               <>
-                <p>{t('farm.remain', { time: remainLabel })}</p>
-                <p>{t('farm.watered', { n: plot.wateredTimes })}</p>
+                <p>
+                  <Emoji size="sm">⏳</Emoji> {t('farm.remain', { time: remainLabel })}
+                </p>
+                <p>
+                  <Emoji size="sm">💧</Emoji> {t('farm.watered', { n: plot.wateredTimes })}
+                </p>
                 <div className="row-actions">
                   <Button
                     loading={busy}
@@ -187,7 +209,7 @@ export function FarmPage() {
                       )
                     }
                   >
-                    {t('farm.water')}
+                    <EmojiLabel emoji="💧">{t('farm.water')}</EmojiLabel>
                   </Button>
                 </div>
                 <div className="row-actions">
@@ -202,7 +224,7 @@ export function FarmPage() {
                       )
                     }
                   >
-                    {t('farm.fertNormal')}
+                    <EmojiLabel emoji="🧪">{t('farm.fertNormal')}</EmojiLabel>
                   </Button>
                   <Button
                     loading={busy}
@@ -215,7 +237,7 @@ export function FarmPage() {
                       )
                     }
                   >
-                    {t('farm.fertAdv')}
+                    <EmojiLabel emoji="✨">{t('farm.fertAdv')}</EmojiLabel>
                   </Button>
                 </div>
               </>
@@ -233,7 +255,7 @@ export function FarmPage() {
                   if (ok) setModalPlot(null)
                 }}
               >
-                {t('farm.harvest')}
+                <EmojiLabel emoji="🧺">{t('farm.harvest')}</EmojiLabel>
               </Button>
             ) : null}
           </div>

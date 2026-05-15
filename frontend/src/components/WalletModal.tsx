@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Button, Card, Modal } from 'animal-island-ui'
 import { apiFetch } from '../api/client'
 import { useAuth } from '../auth/AuthContext'
+import { Emoji, EmojiLabel } from '../components/Emoji'
 import { modalTitleTypewriter } from '../i18n/modalProps'
 import type { UserJson } from '../types'
 
@@ -62,24 +63,29 @@ export function WalletModal({ open, onClose }: { open: boolean; onClose: () => v
         </Button>
       }
     >
-      <p>{t('wallet.mockHint')}</p>
+      <p>
+        <Emoji size="sm">💡</Emoji> {t('wallet.mockHint')}
+      </p>
       <div className="recharge-row">
         <Button loading={busy} onClick={() => recharge('t60')}>
-          {t('wallet.add60')}
+          <EmojiLabel emoji="💎">{t('wallet.add60')}</EmojiLabel>
         </Button>
         <Button loading={busy} onClick={() => recharge('t300')}>
-          {t('wallet.add300')}
+          <EmojiLabel emoji="💎">{t('wallet.add300')}</EmojiLabel>
         </Button>
         <Button loading={busy} onClick={() => recharge('t980')}>
-          {t('wallet.add980')}
+          <EmojiLabel emoji="💎">{t('wallet.add980')}</EmojiLabel>
         </Button>
       </div>
-      <h4>{t('wallet.recent')}</h4>
+      <h4>
+        <Emoji size="sm">📜</Emoji> {t('wallet.recent')}
+      </h4>
       <div className="tx-list">
         {items.map((row) => (
           <Card key={row.id} color="default" className="tx-card">
             <div>
-              {curLabel(row.currency)} {row.amount > 0 ? '+' : ''}
+              {row.amount > 0 ? '📈' : '📉'} {curLabel(row.currency)}{' '}
+              {row.amount > 0 ? '+' : ''}
               {row.amount}
             </div>
             <div>{reasonLabel(row.reason)}</div>

@@ -13,6 +13,7 @@ import {
 import { apiFetch } from '../api/client'
 import { useAuth } from '../auth/AuthContext'
 import { useBgmUnlock } from '../bgm/BgmProvider'
+import { EmojiLabel } from '../components/Emoji'
 import { modalTitleTypewriter } from '../i18n/modalProps'
 
 export function LoginPage() {
@@ -142,6 +143,9 @@ export function LoginPage() {
   return (
     <div className="page login-page">
       <div className="login-banner">
+        <div className="login-mascot" aria-hidden>
+          🏝️🐔
+        </div>
         <Typewriter speed={32}>{t('login.typewriter')}</Typewriter>
       </div>
       <Card color="app-green" className="login-card">
@@ -157,15 +161,15 @@ export function LoginPage() {
         <div className="form-stack">
           {tab === 'login' ? (
             <Button type="primary" block loading={busy} onClick={onLogin}>
-              {t('login.submitLogin')}
+              <EmojiLabel emoji="🔑">{t('login.submitLogin')}</EmojiLabel>
             </Button>
           ) : (
             <Button type="primary" block loading={busy} onClick={onRegister}>
-              {t('login.submitRegister')}
+              <EmojiLabel emoji="✨">{t('login.submitRegister')}</EmojiLabel>
             </Button>
           )}
           <Button block loading={busy} onClick={onGuest}>
-            {t('login.guest')}
+            <EmojiLabel emoji="🦊">{t('login.guest')}</EmojiLabel>
           </Button>
           <Button type="link" block onClick={() => setPolicyOpen(true)}>
             {t('login.viewPolicy')}

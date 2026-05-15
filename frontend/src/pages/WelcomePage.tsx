@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { Button, Modal, Typewriter } from 'animal-island-ui'
+import { Emoji, EmojiLabel } from '../components/Emoji'
 import { modalTitleTypewriter } from '../i18n/modalProps'
 import { useBgmUnlock } from '../bgm/BgmProvider'
 
@@ -19,6 +20,9 @@ export function WelcomePage() {
   return (
     <div className="page welcome">
       <div className="welcome-hero">
+        <div className="welcome-mascot" aria-hidden>
+          🏝️🐔🌻
+        </div>
         <h1 className="welcome-title">{t('welcome.title')}</h1>
         <div className="welcome-type">
           <Typewriter speed={32}>{t('welcome.typewriter')}</Typewriter>
@@ -26,10 +30,10 @@ export function WelcomePage() {
       </div>
       <div className="welcome-actions">
         <Button type="primary" size="large" block onClick={start}>
-          {t('welcome.start')}
+          <EmojiLabel emoji="▶️">{t('welcome.start')}</EmojiLabel>
         </Button>
         <Button size="large" block onClick={() => setAgreeOpen(true)}>
-          {t('welcome.intro')}
+          <EmojiLabel emoji="📖">{t('welcome.intro')}</EmojiLabel>
         </Button>
       </div>
       <footer className="welcome-foot">
@@ -54,8 +58,12 @@ export function WelcomePage() {
         }
         maskClosable
       >
-        <p>{t('welcome.modalBody1')}</p>
-        <p>{t('welcome.modalBody2')}</p>
+        <p>
+          <Emoji size="sm">📜</Emoji> {t('welcome.modalBody1')}
+        </p>
+        <p>
+          <Emoji size="sm">🎵</Emoji> {t('welcome.modalBody2')}
+        </p>
       </Modal>
     </div>
   )

@@ -6,6 +6,7 @@ import { apiFetch } from '../api/client'
 import { useAuth } from '../auth/AuthContext'
 import type { UserJson } from '../types'
 import { WalletModal } from '../components/WalletModal'
+import { Emoji, EmojiLabel } from '../components/Emoji'
 import { setAppLanguage, type AppLang } from '../i18n/config'
 
 export function ProfilePage() {
@@ -37,11 +38,18 @@ export function ProfilePage() {
   return (
     <div className="profile-page">
       <Card color="warm-peach-pink">
+        <div className="profile-avatar" aria-hidden>
+          {user.isGuest ? '🦊' : '🐻'}
+        </div>
         <h3>{user.nickname}</h3>
         <p>
           {t('common.level')} {user.level}
         </p>
-        {user.isGuest ? <p>{t('profile.guestHint')}</p> : null}
+        {user.isGuest ? (
+          <p>
+            <Emoji size="sm">⚠️</Emoji> {t('profile.guestHint')}
+          </p>
+        ) : null}
       </Card>
       <div className="profile-row">
         <span>{t('profile.language')}</span>
@@ -55,7 +63,9 @@ export function ProfilePage() {
         </div>
       </div>
       <div className="profile-row">
-        <span>{t('profile.bgm')}</span>
+        <span>
+          <Emoji size="sm">🎵</Emoji> {t('profile.bgm')}
+        </span>
         <Switch
           checked={user.soundOn}
           onChange={(v) => void patchSound(v)}
@@ -63,13 +73,13 @@ export function ProfilePage() {
         />
       </div>
       <Button type="primary" block onClick={() => setWalletOpen(true)}>
-        {t('profile.wallet')}
+        <EmojiLabel emoji="💎">{t('profile.wallet')}</EmojiLabel>
       </Button>
       <Button block onClick={() => void logout()}>
-        {t('profile.logout')}
+        <EmojiLabel emoji="👋">{t('profile.logout')}</EmojiLabel>
       </Button>
       <Button type="link" block onClick={() => nav('/')}>
-        {t('profile.backWelcome')}
+        <EmojiLabel emoji="🏠">{t('profile.backWelcome')}</EmojiLabel>
       </Button>
 
       <WalletModal open={walletOpen} onClose={() => setWalletOpen(false)} />

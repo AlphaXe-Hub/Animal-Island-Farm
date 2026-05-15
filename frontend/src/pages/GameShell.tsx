@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { Button, Card, Time } from 'animal-island-ui'
+import { Emoji, EmojiLabel } from '../components/Emoji'
+import { NAV_EMOJI } from '../emojis'
 import { useAuth } from '../auth/AuthContext'
 
 const TAB_KEYS = ['farm', 'inventory', 'shop', 'tasks', 'profile'] as const
@@ -52,7 +54,12 @@ export function GameShell() {
               className="game-sidenav-btn"
               onClick={() => nav(`/game/${key}`)}
             >
-              {t(`nav.${key}`)}
+              <span className="nav-btn-inner">
+                <span className="nav-btn-emoji" aria-hidden>
+                  {NAV_EMOJI[key]}
+                </span>
+                <span>{t(`nav.${key}`)}</span>
+              </span>
             </Button>
           ))}
         </nav>
@@ -63,26 +70,29 @@ export function GameShell() {
           <Card color="app-yellow" className="status-card">
             <div className="status-row">
               <span>
-                <strong>{user.nickname}</strong> {t('common.level')}
-                {user.level}
+                <Emoji size="sm">🐻</Emoji> <strong>{user.nickname}</strong>{' '}
+                <EmojiLabel emoji="🎖️">
+                  {t('common.level')}
+                  {user.level}
+                </EmojiLabel>
               </span>
               <Time />
             </div>
             <div className="status-row">
-              <span>
+              <EmojiLabel emoji="🪙">
                 {t('common.coins')} {user.coins}
-              </span>
-              <span>
+              </EmojiLabel>
+              <EmojiLabel emoji="💎">
                 {t('common.diamonds')} {user.diamonds}
-              </span>
-              <span>
+              </EmojiLabel>
+              <EmojiLabel emoji="⚡">
                 {t('common.stamina')} {user.stamina}
-              </span>
+              </EmojiLabel>
             </div>
             <div className="status-bar">
-              <span>
+              <EmojiLabel emoji="⭐">
                 {t('common.exp')} {user.exp}/{user.expToNext}
-              </span>
+              </EmojiLabel>
             </div>
           </Card>
           <div className="top-actions">

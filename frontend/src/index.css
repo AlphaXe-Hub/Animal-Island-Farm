@@ -39,6 +39,157 @@ a {
   margin: 0 0 0.5rem;
 }
 
+.welcome-mascot {
+  font-size: 3.5rem;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  animation: mascot-bob 2.8s ease-in-out infinite;
+}
+
+@keyframes mascot-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.emoji {
+  display: inline-block;
+  line-height: 1;
+}
+
+.emoji-sm {
+  font-size: 1rem;
+}
+
+.emoji-md {
+  font-size: 1.35rem;
+}
+
+.emoji-lg {
+  font-size: 1.85rem;
+}
+
+.emoji-xl {
+  font-size: 2.5rem;
+}
+
+.emoji-hero {
+  font-size: 3.25rem;
+}
+
+.emoji-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.nav-btn-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  line-height: 1.25;
+  padding: 0.15rem 0;
+  min-height: 2.75rem;
+}
+
+.nav-btn-emoji {
+  font-size: 1.65rem;
+  line-height: 1;
+}
+
+.nav-btn-inner > span:last-child {
+  font-size: 0.88rem;
+  letter-spacing: 0.02em;
+}
+
+.plot-cell-emoji {
+  font-size: 1.5rem;
+  line-height: 1;
+  margin: 0.1rem 0;
+}
+
+.plot-cell.state-mature .plot-cell-emoji {
+  animation: ripe-wiggle 1.6s ease-in-out infinite;
+}
+
+@keyframes ripe-wiggle {
+  0%,
+  100% {
+    transform: rotate(-4deg) scale(1);
+  }
+  50% {
+    transform: rotate(4deg) scale(1.08);
+  }
+}
+
+.plot-modal-hero {
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.shop-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.inv-card-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.inv-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+}
+
+.sign-card h3,
+.tasks-page > h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.profile-avatar {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 0.35rem;
+}
+
+.login-mascot {
+  font-size: 2.75rem;
+  text-align: center;
+  margin-bottom: 0.35rem;
+}
+
+.farm-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.empty-emoji {
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 1rem 0 0.5rem;
+}
+
 .welcome-hero {
   text-align: center;
   margin: 2rem 0;
@@ -111,8 +262,9 @@ button.link {
 
 .game-sidenav {
   flex-shrink: 0;
-  width: 5.75rem;
-  padding: 0.5rem 0.4rem;
+  width: 6.75rem;
+  min-width: 6.75rem;
+  padding: 0.65rem 0.5rem;
   background: rgba(245, 245, 220, 0.98);
   border-right: 2px solid #d7ccc8;
   display: flex;
@@ -122,14 +274,18 @@ button.link {
 .game-sidenav-nav {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.6rem;
   position: sticky;
   top: 0.5rem;
 }
 
 .game-sidenav-btn {
-  white-space: nowrap;
-  font-size: 0.85rem;
+  white-space: normal;
+  font-size: 0.88rem;
+  line-height: 1.25;
+  min-height: 3.75rem;
+  height: auto;
+  padding: 0.5rem 0.35rem !important;
 }
 
 .game-body {
@@ -165,10 +321,6 @@ button.link {
 .top-actions {
   text-align: right;
   margin-top: 0.25rem;
-}
-
-.farm-hint {
-  font-size: 0.9rem;
 }
 
 .plot-grid {

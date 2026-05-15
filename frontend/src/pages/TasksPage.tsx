@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { Button, Card } from 'animal-island-ui'
 import { apiFetch } from '../api/client'
 import { useAuth } from '../auth/AuthContext'
+import { Emoji, EmojiLabel } from '../components/Emoji'
+import { TASK_EMOJI } from '../emojis'
 import type { TaskRow, UserJson } from '../types'
 
 export function TasksPage() {
@@ -72,7 +74,9 @@ export function TasksPage() {
     <div className="tasks-page">
       {err ? <p className="form-error">{err}</p> : null}
       <Card color="app-yellow" className="sign-card">
-        <h3>{t('tasks.signTitle')}</h3>
+        <h3>
+          <Emoji size="sm">📅</Emoji> {t('tasks.signTitle')}
+        </h3>
         {sign ? (
           <>
             <p>{t('tasks.week', { wk: sign.weekKey })}</p>
@@ -82,15 +86,20 @@ export function TasksPage() {
               })}
             </p>
             <Button type="primary" loading={busy} onClick={claimSign}>
-              {t('tasks.signBtn')}
+              <EmojiLabel emoji="🎁">{t('tasks.signBtn')}</EmojiLabel>
             </Button>
           </>
         ) : null}
       </Card>
-      <h3>{t('tasks.section')}</h3>
+      <h3>
+        <Emoji size="sm">📋</Emoji> {t('tasks.section')}
+      </h3>
       {tasks.map((row) => (
         <Card key={row.id} color="app-blue" className="task-card">
-          <div>{taskTitle(row)}</div>
+          <div className="task-card-head">
+            <Emoji size="md">{TASK_EMOJI[row.id] ?? '✅'}</Emoji>
+            <span>{taskTitle(row)}</span>
+          </div>
           <div>{t('tasks.progress', { a: row.progress, b: row.target })}</div>
           <div>
             {t('tasks.rewards', {

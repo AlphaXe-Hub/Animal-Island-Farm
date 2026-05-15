@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { Button, Card, Input } from 'animal-island-ui'
 import { apiFetch } from '../api/client'
 import { useAuth } from '../auth/AuthContext'
+import { Emoji, EmojiLabel } from '../components/Emoji'
+import { itemEmoji, SHOP_CAT_EMOJI } from '../emojis'
 import type { ShopCatalogItem, UserJson } from '../types'
 
 export function ShopPage() {
@@ -51,7 +53,7 @@ export function ShopPage() {
   return (
     <div className="shop-page">
       <Input
-        placeholder={t('shop.searchPh')}
+        placeholder={`🔍 ${t('shop.searchPh')}`}
         value={q}
         onChange={(e) => setQ(e.target.value)}
       />
@@ -59,20 +61,26 @@ export function ShopPage() {
       <div className="shop-list">
         {filtered.map((it) => (
           <Card key={it.id} color="app-teal" className="shop-card">
-            <div className="shop-card-title">{displayName(it)}</div>
+            <div className="shop-card-head">
+              <Emoji size="lg">{itemEmoji(it.id)}</Emoji>
+              <div className="shop-card-title">{displayName(it)}</div>
+            </div>
             <div className="shop-meta">
               {it.priceCoins != null ? (
-                <span>
+                <EmojiLabel emoji="🪙">
                   {t('common.coins')} {it.priceCoins}
-                </span>
+                </EmojiLabel>
               ) : null}
               {it.priceDiamonds != null ? (
-                <span>
+                <EmojiLabel emoji="💎">
                   {t('common.diamonds')} {it.priceDiamonds}
-                </span>
+                </EmojiLabel>
               ) : null}
             </div>
-            <p className="shop-cat">{t('shop.category', { cat: categoryLabel(it) })}</p>
+            <p className="shop-cat">
+              {SHOP_CAT_EMOJI[it.category] ?? '📦'}{' '}
+              {t('shop.category', { cat: categoryLabel(it) })}
+            </p>
             <Button
               type="primary"
               block
@@ -80,7 +88,11 @@ export function ShopPage() {
               loading={busy}
               onClick={() => buy(it.id)}
             >
-              {it.unlocked ? t('shop.buy') : t('shop.unlockAt', { lv: it.unlockLevel })}
+              {it.unlocked ? (
+                <EmojiLabel emoji="🛒">{t('shop.buy')}</EmojiLabel>
+              ) : (
+                t('shop.unlockAt', { lv: it.unlockLevel })
+              )}
             </Button>
           </Card>
         ))}
