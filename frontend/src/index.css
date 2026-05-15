@@ -1,0 +1,316 @@
+:root {
+  --animal-primary-color: #7cb342;
+  --animal-bg-page: #f5f5dc;
+  font-family: 'Noto Sans SC', system-ui, sans-serif;
+  color: #5d4037;
+  background: var(--animal-bg-page);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 1rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.page.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.welcome-title {
+  font-size: 1.75rem;
+  margin: 0 0 0.5rem;
+}
+
+.welcome-hero {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.welcome-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 2rem 0;
+}
+
+.welcome-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+button.link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  color: inherit;
+  font: inherit;
+}
+
+.login-page .login-banner {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.login-card {
+  padding: 1rem;
+}
+
+.form-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.login-agree {
+  margin: 1rem 0;
+}
+
+.form-error {
+  color: #c62828;
+  font-size: 0.9rem;
+}
+
+.login-back {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.game-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.game-sidenav {
+  flex-shrink: 0;
+  width: 5.75rem;
+  padding: 0.5rem 0.4rem;
+  background: rgba(245, 245, 220, 0.98);
+  border-right: 2px solid #d7ccc8;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-sidenav-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: sticky;
+  top: 0.5rem;
+}
+
+.game-sidenav-btn {
+  white-space: nowrap;
+  font-size: 0.85rem;
+}
+
+.game-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.game-top {
+  padding: 0.5rem;
+}
+
+.status-card {
+  padding: 0.75rem;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+}
+
+.game-main {
+  flex: 1;
+  padding: 0.5rem 0.75rem 1rem;
+  overflow: auto;
+}
+
+.top-actions {
+  text-align: right;
+  margin-top: 0.25rem;
+}
+
+.farm-hint {
+  font-size: 0.9rem;
+}
+
+.plot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.35rem;
+}
+
+.plot-cell {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  border: 2px solid #8d6e63;
+  background: #c5e1a5;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  padding: 0.15rem;
+}
+
+.plot-cell.state-locked {
+  background: #bcaaa4;
+  cursor: default;
+}
+
+.plot-cell.state-wasteland {
+  background: #a1887f;
+}
+
+.plot-cell.state-tilled {
+  background: #d7ccc8;
+}
+
+.plot-cell.state-growing {
+  background: #aed581;
+}
+
+.plot-cell.state-mature {
+  background: #ffb74d;
+}
+
+.plot-idx {
+  font-weight: 700;
+}
+
+.plot-modal .row-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.seed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.shop-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.shop-card {
+  padding: 0.75rem;
+}
+
+.shop-card-title {
+  font-weight: 600;
+}
+
+.shop-meta {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0.35rem 0;
+}
+
+.shop-cat {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.inv-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inv-card {
+  padding: 0.5rem;
+}
+
+.task-card,
+.sign-card {
+  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+}
+
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.lang-btns {
+  display: flex;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.recharge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+}
+
+.tx-list {
+  max-height: 240px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.tx-card {
+  padding: 0.35rem 0.5rem;
+  font-size: 0.85rem;
+}
+
+.tx-time {
+  opacity: 0.75;
+  font-size: 0.75rem;
+}
