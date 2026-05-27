@@ -4,27 +4,41 @@ import type { PlotState } from './types'
 export const CROP_EMOJI: Record<string, string> = {
   wheat: '🌾',
   carrot: '🥕',
+  lettuce: '🥬',
   corn: '🌽',
   tomato: '🍅',
+  potato: '🥔',
   watermelon: '🍉',
+  strawberry: '🍓',
 }
 
 /** 物品 id → emoji */
 export const ITEM_EMOJI: Record<string, string> = {
   seed_wheat: '🌾',
   seed_carrot: '🥕',
+  seed_lettuce: '🥬',
   seed_corn: '🌽',
   seed_tomato: '🍅',
+  seed_potato: '🥔',
   seed_watermelon: '🍉',
+  seed_strawberry: '🍓',
   crop_wheat: '🌾',
   crop_carrot: '🥕',
+  crop_lettuce: '🥬',
   crop_corn: '🌽',
   crop_tomato: '🍅',
+  crop_potato: '🥔',
   crop_watermelon: '🍉',
+  crop_strawberry: '🍓',
   fertilizer_normal: '🧪',
   fertilizer_advanced: '✨',
+  fertilizer_special: '🌟',
   prop_stamina_potion: '🧃',
+  prop_water_bucket: '🪣',
+  prop_harvest_scroll: '📜',
   decoration_fence: '🪵',
+  decoration_flower_bed: '🌺',
+  decoration_scarecrow: '🎃',
 }
 
 export const PLOT_STATE_EMOJI: Record<PlotState, string> = {

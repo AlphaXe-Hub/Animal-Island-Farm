@@ -3,9 +3,12 @@
 export type CropId =
   | 'wheat'
   | 'carrot'
+  | 'lettuce'
   | 'corn'
   | 'tomato'
-  | 'watermelon';
+  | 'potato'
+  | 'watermelon'
+  | 'strawberry';
 
 export interface CropDef {
   id: CropId;
@@ -36,6 +39,15 @@ export const CROPS: Record<CropId, CropDef> = {
     unlockLevel: 1,
     seedItemId: 'seed_carrot',
   },
+  lettuce: {
+    id: 'lettuce',
+    name: '生菜',
+    growMs: 15 * 60 * 1000,
+    sellPrice: 18,
+    expOnHarvest: 6,
+    unlockLevel: 1,
+    seedItemId: 'seed_lettuce',
+  },
   corn: {
     id: 'corn',
     name: '玉米',
@@ -54,6 +66,15 @@ export const CROPS: Record<CropId, CropDef> = {
     unlockLevel: 3,
     seedItemId: 'seed_tomato',
   },
+  potato: {
+    id: 'potato',
+    name: '土豆',
+    growMs: 45 * 60 * 1000,
+    sellPrice: 45,
+    expOnHarvest: 15,
+    unlockLevel: 3,
+    seedItemId: 'seed_potato',
+  },
   watermelon: {
     id: 'watermelon',
     name: '西瓜',
@@ -62,6 +83,15 @@ export const CROPS: Record<CropId, CropDef> = {
     expOnHarvest: 40,
     unlockLevel: 5,
     seedItemId: 'seed_watermelon',
+  },
+  strawberry: {
+    id: 'strawberry',
+    name: '草莓',
+    growMs: 4 * 60 * 60 * 1000,
+    sellPrice: 180,
+    expOnHarvest: 55,
+    unlockLevel: 8,
+    seedItemId: 'seed_strawberry',
   },
 };
 
@@ -98,6 +128,14 @@ export const SHOP_ITEMS: ShopItemDef[] = [
     unlockLevel: 1,
   },
   {
+    id: 'seed_lettuce',
+    name: '生菜种子',
+    category: 'seed',
+    priceCoins: 12,
+    cropId: 'lettuce',
+    unlockLevel: 1,
+  },
+  {
     id: 'seed_corn',
     name: '玉米种子',
     category: 'seed',
@@ -114,12 +152,28 @@ export const SHOP_ITEMS: ShopItemDef[] = [
     unlockLevel: 3,
   },
   {
+    id: 'seed_potato',
+    name: '土豆种子',
+    category: 'seed',
+    priceCoins: 30,
+    cropId: 'potato',
+    unlockLevel: 3,
+  },
+  {
     id: 'seed_watermelon',
     name: '西瓜种子',
     category: 'seed',
     priceDiamonds: 3,
     cropId: 'watermelon',
     unlockLevel: 5,
+  },
+  {
+    id: 'seed_strawberry',
+    name: '草莓种子',
+    category: 'seed',
+    priceDiamonds: 5,
+    cropId: 'strawberry',
+    unlockLevel: 8,
   },
   {
     id: 'fertilizer_normal',
@@ -139,6 +193,15 @@ export const SHOP_ITEMS: ShopItemDef[] = [
     unlockLevel: 3,
   },
   {
+    id: 'fertilizer_special',
+    name: '特效肥料',
+    category: 'fertilizer',
+    priceDiamonds: 5,
+    speedMul: 0.4,
+    yieldMul: 1.3,
+    unlockLevel: 5,
+  },
+  {
     id: 'prop_stamina_potion',
     name: '体力药水',
     category: 'prop',
@@ -146,11 +209,39 @@ export const SHOP_ITEMS: ShopItemDef[] = [
     unlockLevel: 1,
   },
   {
+    id: 'prop_water_bucket',
+    name: '批量浇水桶',
+    category: 'prop',
+    priceCoins: 15,
+    unlockLevel: 2,
+  },
+  {
+    id: 'prop_harvest_scroll',
+    name: '一键收获卷轴',
+    category: 'prop',
+    priceDiamonds: 2,
+    unlockLevel: 3,
+  },
+  {
     id: 'decoration_fence',
     name: '木栅栏装饰',
     category: 'decoration',
     priceDiamonds: 5,
     unlockLevel: 1,
+  },
+  {
+    id: 'decoration_flower_bed',
+    name: '花坛装饰',
+    category: 'decoration',
+    priceDiamonds: 8,
+    unlockLevel: 3,
+  },
+  {
+    id: 'decoration_scarecrow',
+    name: '稻草人',
+    category: 'decoration',
+    priceDiamonds: 12,
+    unlockLevel: 5,
   },
 ];
 

@@ -10,8 +10,9 @@ import { modalTitleTypewriter } from '../i18n/modalProps'
 import type { FarmPlotJson, UserJson } from '../types'
 
 function cropUnlockLevel(c: string): number {
+  if (c === 'strawberry') return 8
   if (c === 'watermelon') return 5
-  if (c === 'corn' || c === 'tomato') return 3
+  if (c === 'corn' || c === 'tomato' || c === 'potato') return 3
   return 1
 }
 
